@@ -13,7 +13,10 @@ const Transmissores = require("./Tabelas/Transmissores");
 module.exports = async () => {
     try {
 
-        const sequelize = await ConectarAoMySQL('10.254.1.3', 'will', '8cQhfZW5oUiFdCUqJ6ERTSttdzdjH5', 'ixcprovedor')
+        const sequelize = await ConectarAoMySQL('10.254.1.3',
+            process.env.IXC_USER,
+            process.env.IXC_PASS,
+            'ixcprovedor')
 
         const [clientes, contratos, fibras, logins, os, transmissores, funcionarios, ctos, fibra_historico, consumo_m] = await Promise.all([
             Clientes(sequelize),
